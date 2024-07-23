@@ -1,0 +1,40 @@
+
+import React, { useRef, useState } from 'react'
+import { useFrame } from '@react-three/fiber'
+import {Edges, Outlines, } from "@react-three/drei"
+
+export default function Box(props) {
+  // This reference will give us direct access to the mesh
+  // const meshRef = useRef()
+  // Set up state for the hovered and active state
+  // const [hovered, setHover] = useState(false)
+  // const [active, setActive] = useState(false)
+  // Subscribe this component to the render-loop, rotate the mesh every frame
+  // useFrame((state, delta) => (meshRef.current.rotation.x += delta))
+  // Return view, these are regular three.js elements expressed in JSX
+
+  return (
+    // <mesh castShadow>
+    //   <boxGeometry />
+    //   <meshStandardMaterial color="orange" />
+    // </mesh>
+    <mesh
+      castShadow
+      {...props}
+      // ref={meshRef}
+      // scale={active ? 1.4 : 1}
+      // onClick={(event) => setActive(!active)}
+      // onPointerOver={(event) => setHover(true)}
+      // onPointerOut={(event) => setHover(false)}
+      >
+      <boxGeometry args={[2, 2, 2]} />
+      {/* <Edges linewidth={2} threshold={15} color={hovered ? "#c02040" : "black"} /> */}
+      {/* <Outlines thickness={0.01} color={hovered ? "#c02040" : "black"} /> */}
+      {/* <meshPhongMaterial color='white' roughness={10}/> */}
+      <meshStandardMaterial color="white" />
+
+      {/* <meshPhongMaterial /> */}
+      {/* color={hovered ? 'white' : 'orange'} */}
+    </mesh>
+  )
+}

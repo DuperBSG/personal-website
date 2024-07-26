@@ -20,7 +20,7 @@
   }
   
   #root {
-    overflow: auto;
+    overflow: hidden;
   }
   
   body {

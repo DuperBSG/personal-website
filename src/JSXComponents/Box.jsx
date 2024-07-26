@@ -1,26 +1,18 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Edges, Outlines } from '@react-three/drei';
+import { Edges } from '@react-three/drei';
+import { EffectComposer, Glitch } from '@react-three/postprocessing';
 
-export default function Box(props) {
-  // This reference will give us direct access to the mesh
+export default function Box({ scrollY, scrollHandle, ...props }) {
   const boxRef = useRef();
-  // Set up state for the box scale
-  const [scrollY, setScrollY] = useState(0);
-
-  // Handle scroll event to update scrollY state
-  const handleScroll = (event) => {
-    setScrollY(prev => prev + event.deltaY);
-  };
 
   useEffect(() => {
-    window.addEventListener('wheel', handleScroll);
+    window.addEventListener('wheel', scrollHandle);
     return () => {
-      window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('wheel', scrollHandle);
     };
-  }, []);
+  }, [scrollHandle]);
 
-  // useFrame hook to update the box scale and rotation
   useFrame(() => {
     if (boxRef.current) {
       const newScale = 1 + scrollY / 3000;
@@ -31,17 +23,19 @@ export default function Box(props) {
     }
   });
 
-  // Return view, these are regular three.js elements expressed in JSX
   return (
-    <mesh
-      castShadow
-      {...props}
-      ref={boxRef}
-    >
-      <boxGeometry args={[2, 2, 2]} />
-      <Edges linewidth={20} threshold={15} color={'black'} />
-      <Outlines thickness={1} color={'black'} />
-      <meshStandardMaterial color="white" />
-    </mesh>
+    <>
+      <mesh {...props} ref={boxRef} castShadow>
+        <boxGeometry args={[2, 2, 2]} />
+        <Edges linewidth={15} threshold={1} color={'red'} />
+        <Edges linewidth={10} threshold={1} color={'yellow'} />
+        <Edges linewidth={7} threshold={1} color={'blue'} />
+        <Edges linewidth={3} threshold={1} color={'black'} />
+        <meshStandardMaterial color="black" />
+      </mesh>
+      <EffectComposer>
+        <Glitch delay={[0.5, 2.5]} duration={[0.6, 1.0]} strength={[0.3, 0.6]} />
+      </EffectComposer>
+    </>
   );
 }

@@ -1,7 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Edges } from '@react-three/drei';
-import { EffectComposer, Glitch } from '@react-three/postprocessing';
 
 export default function Box({ dim, scrollY, position, offset}) {
   const boxRef = useRef();
@@ -24,6 +23,8 @@ export default function Box({ dim, scrollY, position, offset}) {
         {/* <Edges linewidth={2} threshold={1} color={'black'} /> */}
         {/* <meshStandardMaterial color="black" /> */}
         <meshPhongMaterial color="black" opacity={0.1} transparent />
+        
+        
       </mesh>
     </>
   );

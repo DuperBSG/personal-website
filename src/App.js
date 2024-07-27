@@ -1,12 +1,11 @@
 import './App.css';
 import React, { useState, useRef, useEffect } from 'react';
 import Title from './JSXComponents/Title';
-import Introduction from './JSXComponents/Introduction';
 import { Canvas } from '@react-three/fiber';
 import Box from './JSXComponents/Box';
 import { EffectComposer, Glitch } from '@react-three/postprocessing';
-import { ambientLight, spotLight } from '@react-three/drei';
 import AudioPlayer from './JSXComponents/AudioPlayer';
+import { GlitchMode } from 'postprocessing'
 
 function App() {
   const [scrollY, setScrollY] = useState(800);
@@ -14,7 +13,15 @@ function App() {
   const intervalRef = useRef(null);
 
   const handleScrollCube = (event) => {
-    scrollRef.current += event.deltaY;
+    
+    if (scrollRef.current > 6000) {
+      window.removeEventListener('wheel', handleScrollCube);
+    } else if (scrollRef.current <= 0) {
+      scrollRef.current += 100
+    } else {
+      scrollRef.current += event.deltaY;
+    } 
+
   };
 
   useEffect(() => {
@@ -45,7 +52,7 @@ function App() {
 
   return (
     <>
-      <AudioPlayer src='/[SPOTIFY-DOWNLOADER.COM] Kisses in the Rain.mp3' />
+      <AudioPlayer src="/spotifydown.com - they won't leave.mp3" />
       <div className='title_container'>
         <Canvas dpr={[1, 2]} shadows camera={{ position: [-5, 5, 5], fov: 50 }}>
           <ambientLight />
@@ -53,7 +60,14 @@ function App() {
           <Box dim={[1, 1, 1]} position={[1, 1, -1]} scrollY={scrollY} offset={0.01}/>
           <Box dim={[2, 2, 2]} position={[1, 1, -1]} scrollY={scrollY} offset={-0.013}/>
           <EffectComposer>
-            <Glitch delay={[0.5, 2.5]} duration={[0.6, 1.0]} strength={[0.3, 0.6]} />
+          <Glitch
+            delay={[1.5, 3.5]} // min and max glitch delay
+            duration={[0.6, 1.0]} // min and max glitch duration
+            strength={[0.3, 1.0]} // min and max glitch strength
+            mode={GlitchMode.SPORADIC} // glitch mode
+            active // turn on/off the effect (switches between "mode" prop and GlitchMode.DISABLED)
+            ratio={0.85} // Threshold for strong glitches, 0 - no weak glitches, 1 - no strong glitches.
+          />
           </EffectComposer>
         </Canvas>
       </div>

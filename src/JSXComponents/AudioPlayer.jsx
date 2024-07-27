@@ -6,6 +6,7 @@ const AudioPlayer = ({ src }) => {
   const [progress, setProgress] = useState(0);
   const [volume, setVolume] = useState(1);
 
+  // Toggle play/pause
   const togglePlayPause = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -17,10 +18,12 @@ const AudioPlayer = ({ src }) => {
     }
   };
 
+  // Handle audio end
   const handleEnded = () => {
     setIsPlaying(false);
   };
 
+  // Update progress bar
   const handleTimeUpdate = () => {
     if (audioRef.current) {
       const currentTime = audioRef.current.currentTime;
@@ -29,6 +32,7 @@ const AudioPlayer = ({ src }) => {
     }
   };
 
+  // Handle volume change
   const handleVolumeChange = (event) => {
     const newVolume = event.target.value;
     setVolume(newVolume);
@@ -36,6 +40,17 @@ const AudioPlayer = ({ src }) => {
       audioRef.current.volume = newVolume;
     }
   };
+
+  // Play audio on component mount
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((error) => {
+        console.error('Autoplay failed:', error);
+      });
+    }
+  }, []);
 
   return (
     <div>

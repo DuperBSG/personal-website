@@ -6,16 +6,20 @@ import Box from './JSXComponents/Box';
 import { EffectComposer, Glitch } from '@react-three/postprocessing';
 import AudioPlayer from './JSXComponents/AudioPlayer';
 import { GlitchMode } from 'postprocessing'
+import SpherePattern from './JSXComponents/SpherePattern'
 
 function App() {
   const [scrollY, setScrollY] = useState(800);
   const scrollRef = useRef(0);
   const intervalRef = useRef(null);
+  const [shrink, setShrink] = useState(false)
+  const [sphereActive, setSphereActive] = useState(false)
 
   const handleScrollCube = (event) => {
     
-    if (scrollRef.current > 6000) {
-      window.removeEventListener('wheel', handleScrollCube);
+    if (scrollRef.current > 5000) {
+      setShrink(true)
+      // window.removeEventListener('wheel', handleScrollCube);
     } else if (scrollRef.current <= 0) {
       scrollRef.current += 100
     } else {
@@ -57,8 +61,21 @@ function App() {
         <Canvas dpr={[1, 2]} shadows camera={{ position: [-5, 5, 5], fov: 50 }}>
           <ambientLight />
           <spotLight intensity={1000} angle={0.25} penumbra={0.5} position={[20, 10, 5]} castShadow />
-          <Box dim={[1, 1, 1]} position={[1, 1, -1]} scrollY={scrollY} offset={0.01}/>
-          <Box dim={[2, 2, 2]} position={[1, 1, -1]} scrollY={scrollY} offset={-0.013}/>
+          <SpherePattern 
+                dim={[4]} 
+                position={[1, 1, -1]}
+                active={sphereActive}/>
+          <Box  dim={[1, 1, 1]} 
+                position={[1, 1, -1]} 
+                scrollY={scrollY} 
+                offset={0.01} 
+                shrink={shrink}
+                onZeroScale={() => {
+                  setSphereActive(true)
+                  console.log('yes')
+                }}/>
+          <Box dim={[2, 2, 2]} position={[1, 1, -1]} scrollY={scrollY} offset={-0.013} shrink={shrink}/>
+          
           <EffectComposer>
           <Glitch
             delay={[1.5, 3.5]} // min and max glitch delay

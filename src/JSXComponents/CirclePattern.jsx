@@ -9,7 +9,7 @@ const easeInOutCubic = (t) => {
   // return t * t * t;
 };
 
-export default function Box({ dim, position, active }) {
+export default function Box({ dim, position, active, offset }) {
   const SphereRef = useRef();
   const [scale, setScale] = useState(0);
   const [startTime, setStartTime] = useState(0);
@@ -31,9 +31,9 @@ export default function Box({ dim, position, active }) {
 
       // Update the scale
       SphereRef.current.scale.set(newScale, newScale, newScale);
-      SphereRef.current.rotation.x += 0.01;
-      SphereRef.current.rotation.y += 0.01;
-      SphereRef.current.rotation.z += 0.01;
+      SphereRef.current.rotation.x += offset;
+      SphereRef.current.rotation.y += offset;
+      SphereRef.current.rotation.z += offset;
 
       setScale(newScale);
     }
@@ -47,8 +47,8 @@ export default function Box({ dim, position, active }) {
 
   return (
     <mesh position={position} ref={SphereRef} castShadow>
-      <sphereGeometry args={dim} />
-      <Edges linewidth={1} threshold={1} color={active ? 'white' : 'black'} />
+      <circleGeometry args={dim} />
+      <Edges linewidth={2} threshold={1} color={active ? 'white' : 'black'} />
       <meshPhongMaterial color="black" opacity={0.01} transparent />
     </mesh>
   );

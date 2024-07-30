@@ -1,0 +1,16 @@
+.text-list {
+    color: white;   
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: 'Julius Sans One';
+    font-size: 100px;
+    padding: 0;
+}
+.text-container {
+    display: flex;
+    flex-direction: row;
+    margin: 100px;
+    /* background-color: blueviolet; */
+    /* position: absolute; */
+    width: 100px
+}

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Edges } from '@react-three/drei';
 import * as THREE from 'three';
@@ -6,6 +6,7 @@ import * as THREE from 'three';
 export default function Box({ dim, scrollY, position, offset, shrink, onZeroScale }) {
   const boxRef = useRef();
   const hasCalledOnZeroScale = useRef(false); // To prevent multiple calls
+  const [off, setOff] = useState(false)
 
   useFrame(() => {
     if (boxRef.current) {
@@ -28,6 +29,8 @@ export default function Box({ dim, scrollY, position, offset, shrink, onZeroScal
         if (!hasCalledOnZeroScale.current && typeof onZeroScale === 'function') {
           onZeroScale();
           hasCalledOnZeroScale.current = true; // Prevent future calls
+          setOff(true)
+          console.log("DONE")
         }
       } else {
         // Reset the flag if the scale is not zero
@@ -37,9 +40,10 @@ export default function Box({ dim, scrollY, position, offset, shrink, onZeroScal
   });
 
   return (
+    !off &&
     <mesh position={position} ref={boxRef} castShadow>
       <boxGeometry args={dim} />
-      <Edges linewidth={4} threshold={1} color={'white'} />
+      <Edges linewidth={4} threshold={1} color={'white'}  />
       <meshPhongMaterial color="black" opacity={0.1} transparent />
     </mesh>
   );

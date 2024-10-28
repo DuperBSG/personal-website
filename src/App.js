@@ -8,8 +8,6 @@ import { GlitchMode } from 'postprocessing';
 import SpherePattern from './JSXComponents/SpherePattern';
 import CirclePattern from './JSXComponents/CirclePattern';
 import Line from './JSXComponents/Line';
-import { ParticleEffects } from './JSXComponents/Particles';
-import Text from './JSXComponents/Text'
 
 function App() {
   const [scrollY, setScrollY] = useState(800);

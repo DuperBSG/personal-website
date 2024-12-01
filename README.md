@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Motion Graphic App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive motion graphic application that combines cutting-edge 3D visuals, particle effects, and glitch animations to deliver a stunning and immersive web experience. Built with modern web technologies and self-designed 3D assets.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **Interactive 3D Visuals**:
+  - Built using **React** and **React Three Fiber** for rendering and managing 3D scenes.
+  - Integrated procedural textured 3D models designed in **Blender** and **3D Substance Painter**.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Advanced Animations**:
+  - Implemented smooth transitional and inertial effects using **Sigmoid** and **cubic functions**.
+  - Achieved a **40% improvement in animation performance**, resulting in seamless and realistic animations.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Special Effects**:
+  - Added particle effects with **TSParticles** to create dynamic, visually engaging interactions.
+  - Incorporated glitch animations using **GlitchSquiggly**, adding a modern aesthetic to the app.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Technologies Used
 
-### `npm run build`
+- **Frontend**: [React](https://reactjs.org/), [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
+- **3D Modeling and Texturing**: [Blender](https://www.blender.org/), [3D Substance Painter](https://www.substance3d.com/products/substance-painter/)
+- **Libraries**:
+  - [TSParticles](https://github.com/matteobruni/tsparticles) for particle effects
+  - [GlitchSquiggly](https://github.com/pmndrs/drei) for glitch animations
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📈 Performance Optimization
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Animation Efficiency**:
+  - Utilized mathematical models (**Sigmoid** and **cubic functions**) for smooth and responsive transitions.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
